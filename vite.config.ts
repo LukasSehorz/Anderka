@@ -7,6 +7,11 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Deploy target: Netlify. Nitro emits the static assets to `dist/` and the SSR
+  // handler to `.netlify/functions-internal/server` (see netlify.toml).
+  // Inside a Lovable build LOVABLE_NITRO_PRESET still pins Cloudflare, so this
+  // only takes effect on Netlify/local builds.
+  nitro: { preset: "netlify" },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
